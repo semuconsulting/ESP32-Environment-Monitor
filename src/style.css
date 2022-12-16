@@ -1,0 +1,209 @@
+/* Stylesheet for ESP32 Air Quality Monitor */
+@charset "UTF-8";
+html,body {
+ height:100%;
+}
+html {
+ -ms-text-size-adjust:100%;
+ -webkit-text-size-adjust:100%;
+}
+body {
+ font-family:Arial,Helvetica,sans-serif;
+}
+div.main-container {
+ display:block;
+ position:relative;
+ min-height:95vh;
+ background-color:white;
+ overflow:auto;
+ margin:0 auto;
+ padding:0;
+ padding-bottom:40px;
+ width:100%;
+}
+header {
+  margin:0 auto;
+  font-size:1.2em;
+}
+footer {
+ position:absolute;
+ margin:0 auto;
+ width:100%;
+ bottom:0;
+ height:40px;
+ padding-top: 5px;
+ padding-bottom: 5px;
+}
+.text-center {
+  text-align:center;
+ }
+.comment {
+  font-style:italic;
+  color:#a9a9a9;
+  font-size:1.0em;
+}
+h1 {
+  font-weight: normal;
+  color: #444444;
+}
+.temp {
+ color:#c55;
+}
+.pres {
+ color:#690;
+}
+.humy {
+ color:#09f;
+}
+.dewp {
+ color:#0080ff;
+}
+.sIAQ {
+ color:#b266ff;
+}
+.CO2 {
+ color:#aa0;
+}
+.bVOC {
+ color:#c60;
+}
+div {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin:0 auto;
+}
+div.w50min450 {
+ width:50%;
+ min-width: 450px;
+ max-width:600px;
+}
+div.w90max1000 {
+ width:90%;
+ max-width:1000px;
+}
+div.graph {
+  display:inline-block;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-bottom:1em;
+  color:#999;
+  font-size:1.1em;
+ }
+@media(max-width :450px) {
+ div.w50min450,
+ div.w90max1000,
+ div.graph {
+  width:95%;
+  min-width:300px;
+ }
+ header {
+  font-size:.6em;
+ }
+ .comment {
+  font-size:.8em;
+ }
+}
+#sensorDiv {
+  border-bottom: 2px solid #a9a9a9;
+}
+#configDiv {
+  border-top: 2px solid #a9a9a9;
+  border-bottom: 2px solid #a9a9a9;
+}
+table {
+ border-collapse:collapse;
+ border-spacing:0;
+ width:100%;
+ margin:0 auto;
+}
+table.data {
+ color:white;
+}
+table.config {
+  color:black;
+ }
+td.label {
+ font-size:1.2em;
+ padding:2%;
+}
+td.value {
+ font-size:1.2em;
+ padding:2%;
+ text-align: right;
+}
+td.unit {
+ font-size:1em;
+ padding:2%;
+ vertical-align:top;
+}
+td.formlabel {
+  text-align: right;
+  padding:2%;
+}
+tr.temp {
+ color:white;
+ background-color:#c55;
+}
+tr.pres {
+ color:white;
+ background-color:#690;
+}
+tr.humy {
+ color:white;
+ background-color:#09f;
+}
+tr.dewp {
+ color:white;
+ background-color:#0080ff;
+}
+tr.sIAQ {
+ color:white;
+ background-color:#b266ff;
+}
+tr.CO2 {
+ color:white;
+ background-color:#aa0;
+}
+tr.bVOC {
+ color:white;
+ background-color:#c60;
+}
+canvas {
+ width:95%;
+}
+canvas.temp {
+ border:2px solid #c55;
+ color:#c55;
+}
+canvas.pres {
+ border:2px solid #690;
+ color:#690;
+}
+canvas.humy {
+ border:2px solid #09f;
+ color:#09f;
+}
+canvas.sIAQ {
+ border:2px solid #b266ff;
+ color:#b266ff;
+}
+canvas.CO2 {
+ border:2px solid #aa0;
+ color:#c60;
+}
+canvas.bVOC {
+ border:2px solid #c60;
+ color:#0080ff;
+}
+input.button {
+ color:white;
+ background-color:#666;
+ padding-top:1%;
+ padding-bottom:1%;
+}
+input.period {
+ font-size:1em;
+ color:#555;
+ width:95px;
+ background-color:#eee;
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="ESP32,BME680,AJAX,REST,IAQ">
+	<meta name="description" content="ESP32 Indoor Air Quality Monitor Project">
+	<meta name="author" content="SEMU">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ESP32 Environment Station</title>
+	<link rel="shortcut icon" type="image/png" href="/favicon.ico">
+	<!-- Choose from either minified or original .js & .css files -->
+	<script src="iaqmonitor.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.min.css">
+	<!--<script src="iaqmonitor.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">-->
+</head>
+
+<body onload="start()">
+	<div class="main-container">
+		<header class="text-center">
+			<h1>ESP32 Indoor Air Quality Monitor</h1>
+		</header>
+		<div id=sensorDiv class="w50min450">
+			<table class="data">
+				<tr class="temp">
+					<td class="label">Temperature</td>
+					<td class="value" id="tempValue">000.0</td>
+					<td class="unit">&deg;C</td>
+				</tr>
+				<tr class="pres">
+					<td class="label">Pressure</td>
+					<td class="value" id="presValue">0000</td>
+					<td class="unit">hPa</td>
+				</tr>
+				<tr class="humy">
+					<td class="label">Humidity</td>
+					<td class="value" id="humyValue">000.0</td>
+					<td class="unit">%RH</td>
+				</tr>
+				<tr class="dewp">
+					<td class="label">Dew Point</td>
+					<td class="value" id="dewpValue">000.0</td>
+					<td class="unit">&deg;C</td>
+				</tr>
+				<tr class="sIAQ">
+					<td class="label">Indoor Air Quality</td>
+					<td class="value" id="sIAQValue">000</td>
+					<td class="unit" id="IAQAccuracy"></td>
+				</tr>
+				<tr class="CO2">
+					<td class="label">CO&#x2082;</td>
+					<td class="value" id="CO2Value">000.0</td>
+					<td class="unit">ppm</td>
+				</tr>
+				<tr class="bVOC">
+					<td class="label">Breath VOC</td>
+					<td class="value" id="bVOCValue">00.0</td>
+					<td class="unit">ppm</td>
+				</tr>
+			</table>
+			<p class="comment text-center">
+				Last updated: <span id="currDate"></span><br>
+				System uptime: <span id="upTime"></span>
+			</p>
+		</div>
+		<!-- ./data -->
+		<div id="graphDiv" class="w90max1000">
+			<div class="text-center">
+				<div class="graph">
+					<p class="temp">Temperature &deg;C</p><canvas class="temp" id="tempChart">
+						Your browser does not support the HTML5 canvas tag.</canvas>
+				</div>
+				<div class="graph">
+					<p class="pres">Pressure hPa</p><canvas class="pres" id="presChart">
+						Your browser does not support the HTML5 canvas tag.</canvas>
+				</div>
+				<div class="graph">
+					<p class="humy">Humidity %RH</p><canvas class="humy" id="humyChart">
+						Your browser does not support the HTML5 canvas tag.</canvas>
+				</div>
+				<div class="graph">
+					<p class=sIAQ>sIAQ index</p><canvas class="sIAQ" id="sIAQChart">
+						Your browser does not support the HTML5 canvas tag.</canvas>
+				</div>
+				<div class="graph">
+					<p class="CO2">CO&#x2082; ppm</p><canvas class="CO2" id="CO2Chart">
+						Your browser does not support the HTML5 canvas tag.</canvas>
+				</div>
+				<div class="graph">
+					<p class="bVOC">bVOC ppm</p><canvas class="bVOC" id="bVOCChart">
+						Your browser does not support the HTML5 canvas tag.</canvas>
+				</div>
+			</div>
+		</div>
+		<!-- ./graphs -->
+		<div id="configDiv" class="w50min450">
+			<details>
+				<summary>Configuration</summary>
+				<form id="updateConfig" class="updateConfig" action="javascript:void(0);" onsubmit="putConfig()">
+					<table class="config">
+						<tr>
+							<td class="formlabel">Sensor Refresh Interval (ms)</td>
+							<td><input id="sIntInput" class="period" type="number" min=1000 max=99999000
+									autocomplete="off" required></td>
+						</tr>
+						<tr>
+							<td class="formlabel">Graph Refresh Interval (ms)</td>
+							<td><input id="gIntInput" class="period" type="number" min=1000 max=99999000
+									autocomplete="off" required></td>
+						</tr>
+						<tr>
+							<td class="formlabel">Log Refresh Interval (ms)</td>
+							<td><input id="lIntInput" class="period" type="number" min=1000 max=99999000
+									autocomplete="off" required></td>
+						</tr>
+					</table>
+					<p class="text-center">
+						<input id="submitButton" class="button" type="submit" value="Update">
+						<input id="refSensorButton" class="button" type="button" onclick="getSensor()"
+							value="Refresh Sensor">
+						<input id="refGraphButton" class="button" type="button" onclick="getLog()"
+							value="Refresh Graphs">
+					</p>
+				</form>
+			</details>
+		</div>
+		<!-- ./config -->
+		<footer class="text-center">
+			<p></p>
+			<address>
+				Details and source code available from <a
+					href="https://github.com/semuconsulting/esp32_IAQ_monitor">SEMU
+					Consulting</a> &copy; 2019.
+			</address>
+		</footer>
+	</div>
+	<!-- /.main-container-->
+</body>
+
+</html>
